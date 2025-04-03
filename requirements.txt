@@ -2,9 +2,10 @@ streamlit
 pandas
 numpy
 matplotlib
-plotly
-scikit-learn
 seaborn
 scipy
+plotly
+kaleido
 fpdf
 imbalanced-learn
+scikit-learn
