@@ -604,9 +604,7 @@ def generar_informe_pdf(nombre_archivo, prediccion, probabilidad, caracteristica
     pdf.add_dataframe(df_features)
     return bytes(pdf.output(dest='S'))
 
-#######################################################################
-#######################################################################
-#######################################################################
+#######################################################################################################
 @st.cache_resource
 def cargar_modelo():
     """Carga el modelo y label encoder de manera robusta"""
@@ -619,13 +617,13 @@ def cargar_modelo():
     le_path = base_path / "label_encoder_marcha.pkl"
     
     # Información de diagnóstico (puedes comentar estas líneas después)
-    st.write(f"📁 Directorio base: {base_path}")
-    st.write(f"📄 Buscando modelo en: {modelo_path}")
-    st.write(f"📄 Buscando encoder en: {le_path}")
+    #st.write(f"📁 Directorio base: {base_path}")
+    #st.write(f"📄 Buscando modelo en: {modelo_path}")
+    #st.write(f"📄 Buscando encoder en: {le_path}")
     
     # Listar archivos en el directorio para diagnóstico
-    archivos_disponibles = list(base_path.glob("*.pkl"))
-    st.write(f"📋 Archivos .pkl encontrados: {[f.name for f in archivos_disponibles]}")
+    #archivos_disponibles = list(base_path.glob("*.pkl"))
+    #st.write(f"📋 Archivos .pkl encontrados: {[f.name for f in archivos_disponibles]}")
     
     try:
         # Verificar que los archivos existan antes de intentar cargarlos
