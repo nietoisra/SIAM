@@ -53,7 +53,6 @@ def validate_data(df):
     
     return True, "Archivo válido"
 
-############################################################################
 def calculate_features(df):
     features = {}
 
