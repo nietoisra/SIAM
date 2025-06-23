@@ -317,22 +317,22 @@ def modulo_comparativo_alzheimer():
         differences_data = [
             {
                 "Aspecto": "Patrones de Movimiento (Aceleración)",
-                "Personas Sanas": "Movimientos más consistentes y estables",
+                "Personas Sanas": "Movimientos consistentes y estables",
                 "Personas con Alzheimer": "Movimientos más irregulares y variables",
                 "Diferencia Clave": f"{abs(acc_diff_pct):.1f}% {'más' if acc_diff_pct > 0 else 'menos'} variabilidad",
                 "Diferencia_Num": abs(acc_diff_pct)
             },
             {
                 "Aspecto": "Cambios de Dirección (Giro)",
-                "Personas Sanas": "Giros más suaves y controlados",
+                "Personas Sanas": "Giros suaves y controlados",
                 "Personas con Alzheimer": "Giros más bruscos e impredecibles",
                 "Diferencia Clave": f"{abs(giro_diff_pct):.1f}% {'más' if giro_diff_pct > 0 else 'menos'} variabilidad",
                 "Diferencia_Num": abs(giro_diff_pct)
             },
             {
                 "Aspecto": "Regularidad del Movimiento",
-                "Personas Sanas": "Patrones más regulares y predecibles",
-                "Personas con Alzheimer": "Movimientos menos regulares",
+                "Personas Sanas": "Patrones regulares y predecibles",
+                "Personas con Alzheimer": "Movimientos más irregulares",
                 "Diferencia Clave": f"{abs(reg_diff_pct):.2f}% de diferencia",
                 "Diferencia_Num": abs(reg_diff_pct)
             }
@@ -439,7 +439,6 @@ def modulo_comparativo_alzheimer():
             st.markdown("**Factores de riesgo identificados:**")
             for factor in risk_factors:
                 st.markdown(f"- {factor}")
-
     else:
         st.info("👆 Por favor, carga archivos de personas sanas y del paciente con Alzheimer para comenzar la comparación.")
 
@@ -546,7 +545,6 @@ def extraer_caracteristicas(df):
     peaks, _ = find_peaks(df["Acc Z"], height=np.mean(df["Acc Z"]) + 2 * df["Acc Z"].std())
     duracion_seg = df["Tiempo"].iloc[-1] - df["Tiempo"].iloc[0]
     caracteristicas["cadence"] = len(peaks) / (duracion_seg / 60)
-
     return caracteristicas
 
 class PDF(FPDF):
@@ -604,27 +602,13 @@ def generar_informe_pdf(nombre_archivo, prediccion, probabilidad, caracteristica
     pdf.add_dataframe(df_features)
     return bytes(pdf.output(dest='S'))
 
-#######################################################################################################
 @st.cache_resource
 def cargar_modelo():
-    """Carga el modelo y label encoder de manera robusta"""
-    
-    # Obtener la ruta del directorio donde está el script actual
     base_path = Path(__file__).parent
     
-    # Construir rutas absolutas a los archivos
     modelo_path = base_path / "modelo_clasificacion_marcha.pkl"
     le_path = base_path / "label_encoder_marcha.pkl"
-    
-    # Información de diagnóstico (puedes comentar estas líneas después)
-    #st.write(f"📁 Directorio base: {base_path}")
-    #st.write(f"📄 Buscando modelo en: {modelo_path}")
-    #st.write(f"📄 Buscando encoder en: {le_path}")
-    
-    # Listar archivos en el directorio para diagnóstico
-    #archivos_disponibles = list(base_path.glob("*.pkl"))
-    #st.write(f"📋 Archivos .pkl encontrados: {[f.name for f in archivos_disponibles]}")
-    
+        
     try:
         # Verificar que los archivos existan antes de intentar cargarlos
         if not modelo_path.exists():
@@ -637,7 +621,7 @@ def cargar_modelo():
         modelo = joblib.load(modelo_path)
         le = joblib.load(le_path)
         
-        st.success("✅ Modelos cargados exitosamente")
+        #st.success("✅ Modelos cargados exitosamente")
         return modelo, le
         
     except FileNotFoundError as e:
@@ -649,18 +633,6 @@ def cargar_modelo():
     except Exception as e:
         st.error(f"❌ Error al cargar el modelo: {str(e)}")
         return None, None
-
-#@st.cache_resource
-#def cargar_modelo():
-#    modelo_path = "modelo_clasificacion_marcha.pkl"
-#    le_path = "label_encoder_marcha.pkl"
-#    try:
-#        modelo = joblib.load(modelo_path)
-#        le = joblib.load(le_path)
-#        return modelo, le
-#    except FileNotFoundError as e:
-#        st.error(f"No se encontró el archivo: {e}. Asegúrate de haber entrenado y guardado el modelo.")
-#        return None, None
 
 def modulo_prediccion():
     st.header("⚕️ Clasificación  ALZ vs SANO")
