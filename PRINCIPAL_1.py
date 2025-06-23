@@ -609,34 +609,25 @@ def generar_informe_pdf(nombre_archivo, prediccion, probabilidad, caracteristica
 #######################################################################
 
 @st.cache_resource
-def cargar_modelo():
-    """Carga el modelo y label encoder de manera robusta"""
+def cargar_modelo_alternativo():
+    """Versión alternativa usando os.path"""
     
-    # Obtener la ruta del directorio donde está el script actual
-    base_path = Path(__file__).parent
+    # Obtener el directorio del script actual
+    script_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # Construir rutas absolutas a los archivos
-    modelo_path = base_path / "modelo_clasificacion_marcha.pkl"
-    le_path = base_path / "label_encoder_marcha.pkl"
+    modelo_path = os.path.join(script_dir, "modelo_clasificacion_marcha.pkl")
+    le_path = os.path.join(script_dir, "label_encoder_marcha.pkl")
     
-    # Información de diagnóstico (puedes comentar estas líneas después)
-    st.write(f"📁 Directorio base: {base_path}")
-    st.write(f"📄 Buscando modelo en: {modelo_path}")
-    st.write(f"📄 Buscando encoder en: {le_path}")
-    
-    # Listar archivos en el directorio para diagnóstico
-    archivos_disponibles = list(base_path.glob("*.pkl"))
-    st.write(f"📋 Archivos .pkl encontrados: {[f.name for f in archivos_disponibles]}")
+    # Diagnóstico
+    st.write(f"📁 Directorio del script: {script_dir}")
+    st.write(f"📋 Archivos en directorio: {os.listdir(script_dir)}")
     
     try:
-        # Verificar que los archivos existan antes de intentar cargarlos
-        if not modelo_path.exists():
-            raise FileNotFoundError(f"No se encontró el archivo de modelo: {modelo_path}")
-        
-        if not le_path.exists():
-            raise FileNotFoundError(f"No se encontró el archivo de label encoder: {le_path}")
-        
-        # Cargar los archivos
+        if not os.path.exists(modelo_path):
+            raise FileNotFoundError(f"No se encontró: {modelo_path}")
+        if not os.path.exists(le_path):
+            raise FileNotFoundError(f"No se encontró: {le_path}")
+            
         modelo = joblib.load(modelo_path)
         le = joblib.load(le_path)
         
@@ -646,12 +637,55 @@ def cargar_modelo():
     except FileNotFoundError as e:
         st.error(f"❌ No se encontró el archivo: {e}")
         st.warning("⚠️ Modelo no encontrado. Este módulo requiere archivos de modelo entrenado.")
-        st.info("📋 Archivos necesarios: 'modelo_clasificacion_marcha.pkl' y 'label_encoder_marcha.pkl'")
         return None, None
-    
     except Exception as e:
         st.error(f"❌ Error al cargar el modelo: {str(e)}")
         return None, None
+
+#@st.cache_resource
+#def cargar_modelo():
+#    """Carga el modelo y label encoder de manera robusta"""
+    
+#    # Obtener la ruta del directorio donde está el script actual
+#    base_path = Path(__file__).parent
+#    
+#    # Construir rutas absolutas a los archivos
+#    modelo_path = base_path / "modelo_clasificacion_marcha.pkl"
+#    le_path = base_path / "label_encoder_marcha.pkl"
+#    
+#    # Información de diagnóstico (puedes comentar estas líneas después)
+#    st.write(f"📁 Directorio base: {base_path}")
+#    st.write(f"📄 Buscando modelo en: {modelo_path}")
+#    st.write(f"📄 Buscando encoder en: {le_path}")
+    
+#    # Listar archivos en el directorio para diagnóstico
+#    archivos_disponibles = list(base_path.glob("*.pkl"))
+#    st.write(f"📋 Archivos .pkl encontrados: {[f.name for f in archivos_disponibles]}")
+    
+#    try:
+#        # Verificar que los archivos existan antes de intentar cargarlos
+#        if not modelo_path.exists():
+#            raise FileNotFoundError(f"No se encontró el archivo de modelo: {modelo_path}")
+        
+#        if not le_path.exists():
+#            raise FileNotFoundError(f"No se encontró el archivo de label encoder: {le_path}")
+#        
+#        # Cargar los archivos
+#        modelo = joblib.load(modelo_path)
+#        le = joblib.load(le_path)
+#        
+#        st.success("✅ Modelos cargados exitosamente")
+#        return modelo, le
+#        
+#    except FileNotFoundError as e:
+#        st.error(f"❌ No se encontró el archivo: {e}")
+#        st.warning("⚠️ Modelo no encontrado. Este módulo requiere archivos de modelo entrenado.")
+#        st.info("📋 Archivos necesarios: 'modelo_clasificacion_marcha.pkl' y 'label_encoder_marcha.pkl'")
+#        return None, None
+#    
+#    except Exception as e:
+#        st.error(f"❌ Error al cargar el modelo: {str(e)}")
+#        return None, None
 
 #@st.cache_resource
 #def cargar_modelo():
