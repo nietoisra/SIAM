@@ -663,7 +663,7 @@ def cargar_modelo():
 #        return None, None
 
 def modulo_prediccion():
-    st.header("🤖 Clasificación  ALZ vs SANO")
+    st.header("⚕️ Clasificación  ALZ vs SANO")
     
     modelo, le = cargar_modelo()
     if modelo is None or le is None:
