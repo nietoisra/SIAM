@@ -602,8 +602,11 @@ def generar_informe_pdf(nombre_archivo, prediccion, probabilidad, caracteristica
     df_features = pd.DataFrame([caracteristicas]).T.reset_index()
     df_features.columns = ["Característica", "Valor"]
     pdf.add_dataframe(df_features)
-
     return bytes(pdf.output(dest='S'))
+
+#######################################################################
+#######################################################################
+#######################################################################
 
 @st.cache_resource
 def cargar_modelo():
