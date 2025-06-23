@@ -453,7 +453,7 @@ def main():
         st.header("🔧 Selecciona el Módulo")
         modulo = st.selectbox("Elige un módulo para comenzar el análisis:", [
             "🏠 Inicio",
-            "🤖 Clasificación ALZ vs SANO",
+            "⚕️ Clasificación ALZ vs SANO",
             "📊 Comparativo ALZ vs Sanos", 
             "🏥 Análisis de Marcha",
             "⚠️ Riesgo de Caída", 
