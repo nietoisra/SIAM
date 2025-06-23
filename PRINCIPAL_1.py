@@ -236,7 +236,7 @@ def modulo_comparativo_alzheimer():
         }
         st.success(f"Se procesaron {len(st.session_state.healthy_data)} archivos de personas sanas")
 
-    st.subheader("2️⃣ Subir Archivo del Paciente con Alzheimer")
+    st.subheader("2️⃣ Subir Archivo de Persona con Alzheimer")
     alzheimer_file = st.file_uploader("Archivo CSV - Paciente ALZ", type=['csv'], key="alzheimer_file")
 
     if alzheimer_file:
