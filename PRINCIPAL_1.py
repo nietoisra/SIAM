@@ -467,7 +467,7 @@ def main():
     
     if modulo == "🏠 Inicio":
         mostrar_inicio()
-    elif modulo == "🤖 Clasificación ALZ vs SANO":
+    elif modulo == "⚕️ Clasificación ALZ vs SANO":
         modulo_prediccion()
     elif modulo == "📊 Comparativo ALZ vs Sanos":
         modulo_comparativo_alzheimer()
@@ -483,7 +483,7 @@ def mostrar_inicio():
     
     with col1:
         st.markdown("""
-        ### 🤖 Clasificación ALZ vs SANO
+        ### ⚕️ Clasificación ALZ vs SANO
         - Clasificación automática usando ML
         - Análisis de múltiples archivos
         - Visualización de resultados
