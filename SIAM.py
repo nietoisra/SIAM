@@ -469,7 +469,7 @@ def main():
         #modulo = st.selectbox("Elige un módulo para comenzar el análisis:", [
         modulo = st.selectbox("", [
             "🏠 Inicio",
-            "🤖 Clasificación ALZ vs SANO",
+            "⚕️ Clasificación ALZ vs SANO",
             "📊 Comparativo ALZ vs Sanos", 
             "🏃‍♂️ Análisis de Marcha + Riesgo de Caída", 
         ])
@@ -482,7 +482,7 @@ def main():
     
     if modulo == "🏠 Inicio":
         mostrar_inicio()
-    elif modulo == "🤖 Clasificación ALZ vs SANO":
+    elif modulo == "⚕️ Clasificación ALZ vs SANO":
         modulo_prediccion()
     elif modulo == "📊 Comparativo ALZ vs Sanos":
         modulo_comparativo_alzheimer()
@@ -497,7 +497,7 @@ def mostrar_inicio():
     
     with col1:
         st.markdown("""
-        ### 🤖 Clasificación ALZ vs SANO
+        ### ⚕️ Clasificación ALZ vs SANO
         - Clasificación automática usando ML
         - Análisis de múltiples archivos
         - Visualización de resultados
@@ -513,7 +513,7 @@ def mostrar_inicio():
     col3 = st.columns(1)[0]
     with col3:
         st.markdown("""
-        ### 🏥 Análisis de Marcha + ⚠️ Riesgo de Caída
+        ### 🏃‍♂️ Análisis de Marcha + ⚠️ Riesgo de Caída
         - Análisis de estabilidad de marcha
         - Factores de riesgo identificados
         - Análisis de variabilidad
@@ -625,7 +625,7 @@ def cargar_modelo():
         return None, None
 
 def modulo_prediccion():
-    st.header("🤖 Clasificación  ALZ vs SANO")
+    st.header("⚕️ Clasificación  ALZ vs SANO")
     
     modelo, le = cargar_modelo()
     if modelo is None or le is None:
