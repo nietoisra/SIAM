@@ -1,0 +1,57 @@
+name: Run replication (LOSO)
+
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - notebooks/replication_main.ipynb
+      - requirements.txt
+      - src/**
+      - .github/workflows/run-replication.yml
+
+permissions:
+  contents: write  # ← necesario si vas a commitear resultados
+
+jobs:
+  run-replication:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install jupyter nbconvert
+
+      - name: Execute notebook
+        run: |
+          jupyter nbconvert --to notebook --execute notebooks/replication_main.ipynb \
+            --output notebooks/replication_main_out.ipynb \
+            --ExecutePreprocessor.timeout=1200
+          
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: siam-results
+          path: |
+            results/metrics_bootstrap.csv
+            results/predictions_oof.csv
+            results/roc_curve.png
+            results/pr_curve.png
+            results/calibration_curve.png
+
+      # (Opcional) Commit de resultados al repo
+      - name: Commit results to repo
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/*.csv results/*.png notebooks/replication_main_out.ipynb || true
+          git commit -m "CI: update LOSO results [skip ci]" || echo "No changes to commit"
+          git push
