@@ -1,0 +1,36 @@
+{
+  "title": "SIAM: Open‑source Pipeline for Inertial‑Sensor Gait Analysis",
+  "upload_type": "software",
+  "description": "SIAM is an open-source pipeline for gait analysis using inertial measurement units (IMUs). It provides modular tools for preprocessing, feature extraction, and machine-learning classification with a focus on reproducibility and transparency. This repository accompanies a submission to Computer Methods and Programs in Biomedicine (CMPB).",
+  "creators": [
+    {
+      "name": "LastName, FirstName",
+      "affiliation": "Institution / University",
+      "orcid": "0000-0000-0000-0000"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Gait analysis",
+    "Inertial measurement units",
+    "Machine learning",
+    "Biomedical signal processing",
+    "Open-source software"
+  ],
+  "version": "1.0",
+  "notes": "This release contains the SIAM pipeline v1.0, including scripts, notebooks, and example datasets (synthetic).",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "10.1016/j.cmpb.xxxxx",
+      "scheme": "doi"
+    }
+  ],
+  "access_right": "open",
+  "funding": [
+    {
+      "funder_name": "Funding Agency Name",
+      "grant_number": "XXXX-XXXX"
+    }
+  ]
+}
