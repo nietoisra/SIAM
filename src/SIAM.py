@@ -1,5 +1,3 @@
-## python -m streamlit run C:\Users\Nieto\Desktop\TOTAL\SIAM.py
-
 import streamlit as st
 import pandas as pd
 import numpy as np
