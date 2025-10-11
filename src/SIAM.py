@@ -612,8 +612,8 @@ def generar_informe_pdf(nombre_archivo, prediccion, probabilidad, caracteristica
 
 @st.cache_resource
 def cargar_modelo():
-    modelo_path = "modelo_clasificacion_marcha.pkl"
-    le_path = "label_encoder_marcha.pkl"
+    modelo_path = "models/modelo_clasificacion_marcha.pkl"
+    le_path = "models/label_encoder_marcha.pkl"
     try:
         modelo = joblib.load(modelo_path)
         le = joblib.load(le_path)
