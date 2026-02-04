@@ -62,7 +62,7 @@ SIAM is guided by five design principles aligned with best practices in biomedic
 
 SIAM is organized as a **fixed, end-to-end validation architecture** in which each stage is executed sequentially and evaluated under strict subject-independent conditions. The pipeline is intentionally designed to expose architectural fragility, uncertainty, and demographic sensitivity rather than to optimize task-specific performance.
 
-![Figure 1. System-level architecture of the SIAM framework.](docs/figures/figure1_siam_architecture.png)
+![Figure 1. System-level architecture of the SIAM framework.](figures/proceso.png)
 
 ---
 
