@@ -59,6 +59,32 @@ SIAM is guided by five design principles aligned with best practices in biomedic
 
 ---
 
+##
+Inertial Data Acquisition
+└─ Standardized single-IMU recording (trunk-mounted)
+↓
+Signal Preprocessing
+└─ Fixed band-pass filtering and windowing (no subject-specific tuning)
+↓
+Window-Based Feature Extraction
+└─ Time-, frequency-, variability-, and complexity-based descriptors
+↓
+Trial-Level Feature Aggregation
+└─ Robust median aggregation across windows
+↓
+Classical Machine Learning Models
+└─ Interpretable models with fixed hyperparameters
+↓
+Leave-One-Subject-Out Validation (LOSO)
+└─ Subject-independent architectural stress test
+↓
+Probabilistic Calibration Assessment
+└─ Reliability curves and Brier score on held-out subjects
+↓
+Demographic Confounding Characterization
+└─ Feature-level sensitivity analysis (e.g., biological sex)
+---
+
 ## System Overview
 
 Inertial Data Acquisition
