@@ -1,155 +1,259 @@
-# SIAM  
-**System-Level Validation Architecture for Inertial Gait Analysis**
+SIAM
 
-SIAM is an **open-source, system-level validation framework** for inertial sensor–based gait analysis, designed to support **subject-independent evaluation**, **probabilistic reliability assessment**, **demographic confounding characterization**, and **reproducible benchmarking** in biomedical engineering research.
+A System-Level Validation Framework for Inertial Gait Analysis
 
-This repository accompanies the manuscript:
+SIAM (System for Inertial Gait Analysis and Modeling) is an open-source, modular, and reproducible framework designed for system-level methodological validation of inertial gait-analysis pipelines. The framework prioritizes subject-independent evaluation, probabilistic reliability, and explicit characterization of demographic confounding, particularly in small-sample wearable sensing studies.
 
-> **“SIAM: A system-level validation framework for subject-independent inertial gait analysis”**  
-> submitted to *Medical & Biological Engineering & Computing (MBEC)*.
+SIAM is not proposed as a clinically validated diagnostic system.
+Its purpose is methodological: to provide a reference validation architecture for evaluating how complete inertial gait-analysis systems behave under strict and deployment-relevant validation conditions.
 
-The contribution of SIAM is **architectural and methodological**.  
-It does **not** propose algorithmic novelty, clinical diagnostic tools, or disease-specific biomarkers.  
-Instead, SIAM provides a reusable validation architecture to characterize how established sensing and machine-learning components behave under **adverse yet deployment-relevant conditions**.
+Rationale
 
----
+Inertial measurement units (IMUs) are widely adopted for quantitative gait analysis in ageing and neurological research. Despite their accessibility and growing use, methodological progress in this field is frequently constrained by:
 
-## Scope and Design Principles
+Subject-dependent or mixed-subject validation strategies
 
-SIAM was developed with the following principles:
+Optimistic performance estimates driven by subject-specific signal leakage
 
-- **System-level validation**, not task-specific optimization  
-- **Subject-independent evaluation** (leave-one-subject-out, LOSO)  
-- **Fixed and reproducible design choices**, avoiding data-driven tuning  
-- **Probabilistic reliability**, beyond accuracy-based metrics  
-- **Explicit demographic transparency**, not post-hoc correction  
-- **Open and inspectable implementation**, enabling independent replication
+Limited reporting of probabilistic calibration and predictive reliability
 
-All reported results in the accompanying manuscript should be interpreted as **descriptors of system behavior**, not as evidence of clinical discrimination or disease detection.
+Insufficient analysis of demographic confounding (e.g., biological sex)
 
----
+Lack of reproducible, system-level validation pipelines
 
-## Repository Structure
+As a result, reported classification performance often reflects favorable validation conditions rather than genuine subject-independent generalization.
+
+SIAM addresses these issues by shifting emphasis from algorithmic novelty to validation architecture, treating the computational pipeline itself as a biomedical system whose robustness must be empirically demonstrated.
+
+Scope and Intended Contribution
+
+SIAM demonstrates system behavior using a pilot cohort of older adults with and without Alzheimer’s disease as a representative use case. This cohort is intentionally small and demographically constrained, reflecting realistic conditions encountered in exploratory wearable studies.
+
+Accordingly:
+
+SIAM does not aim to establish diagnostic validity
+
+SIAM does not identify disease-specific biomarkers
+
+Reported metrics describe system-level behavior, not clinical performance
+
+The framework is intended to support transparent methodological evaluation, not clinical decision-making.
+
+Architectural Principles
+
+SIAM is guided by five design principles aligned with best practices in biomedical systems engineering:
+
+Strict subject independence
+Leave-one-subject-out (LOSO) validation is mandatory and treated as an architectural stress test.
+
+Reliability beyond discrimination
+Probabilistic calibration is evaluated alongside accuracy-based metrics.
+
+Explicit confounding analysis
+Demographic sensitivity is quantified and reported rather than implicitly assumed away.
+
+Fixed and transparent pipelines
+Preprocessing, feature extraction, and model parameters are defined a priori.
+
+Reproducibility over optimization
+No dataset-specific hyperparameter tuning or model selection using test data.
+
+System Overview
+
+SIAM integrates the complete inertial gait-analysis pipeline within a single reproducible architecture:
+
+Inertial Data Acquisition
+        ↓
+Signal Preprocessing
+        ↓
+Window-Based Feature Extraction
+        ↓
+Trial-Level Aggregation
+        ↓
+Classical Machine Learning Models
+        ↓
+Leave-One-Subject-Out Validation
+        ↓
+Probabilistic Calibration Assessment
+        ↓
+Demographic Confounding Characterization
 
 
+Each stage is modular, documented, and hardware-agnostic.
 
-***
-# SIAM: An Open-Source Architecture for Inertial Gait Analysis and Characterization in Alzheimer’s Disease
+Data Acquisition
 
-## Overview
-**SIAM (System-level Inertial Gait Analysis Method)** is an open-source validation architecture for inertial sensor–based gait analysis designed to support subject-independent evaluation, probabilistic calibration, demographic confounding analysis, and reproducible benchmarking as described in the manuscript submitted to Medical & Biological Engineering & Computing (MBEC).
+Sensor: Single wearable IMU (Bosch BMI270)
 
----
+Signals: Triaxial acceleration and triaxial angular velocity
 
-## Key Features
-- **Modular architecture:** acquisition, preprocessing, feature extraction, classification, and visualization.
-- **Low‑latency processing:** ~2.8 s end‑to‑end per subject (typical workstation).
-- **Transparent reporting:** bootstrap CIs, LOSO validation, ROC/PR and calibration curves.
-- **Reproducibility:** fixed seeds, documented environment, tagged releases with DOI.
-- **Open data derivatives:** synthetic example dataset and anonymized feature tables.
+Placement: Lumbar region (L4–L5)
 
----
+Sampling frequency: 100 Hz
 
-## Repository Structure
-```
-SIAM/
-├── data/
-│   ├── example_dataset.csv         # Synthetic demo data (no PHI)
-│   └── features_description.csv    # Variable dictionary
-│
-├── models/                         # Trained artifacts (optional, for demo)
-│   ├── label_encoder_marcha.pkl
-│   └── modelo_clasificacion_marcha.pkl
-│
-├── notebooks/
-│   ├── SIAM_demo.ipynb             # Minimal demo with synthetic data
-│   └── replication_main.ipynb      # LOSO validation and exports to /results
-│
-├── results/                        # Generated by notebooks
-│   ├── metrics_bootstrap.csv
-│   ├── predictions_oof.csv
-│   ├── roc_curve.png
-│   ├── pr_curve.png
-│   └── calibration_curve.png
-│
-├── src/                            # Source code (rename from 'scr' if needed)
-│   └── SIAM.py
-│
-├── requirements.txt
-├── LICENSE
-├── .zenodo.json
-└── README.md
-```
-*Note:* If your repository currently uses `scr/`, consider renaming it to `src/` for consistency.
+Protocol: Overground walking at slow, preferred, and fast speeds
 
----
+Output format: CSV
 
-## Installation
-```bash
-git clone https://github.com/usuario/SIAM.git
-cd SIAM
-pip install -r requirements.txt
-# (Optional) conda:
-# conda env create -f environment.yml && conda activate siam-env
-```
+Walking speed conditions are treated as controlled within-subject variability rather than explicit experimental factors, reflecting deployment-like heterogeneity.
 
----
+Signal Preprocessing
 
-## Usage
+All preprocessing parameters are fixed prior to analysis and applied identically across subjects:
 
-### 1) Minimal demo
-Open the demo notebook and run all cells:
-```bash
-jupyter notebook notebooks/SIAM_demo.ipynb
-```
+Zero-phase Butterworth band-pass filtering (0.5–20 Hz)
 
-### 2) Replication with LOSO
-This notebook performs Leave‑One‑Subject‑Out validation using the synthetic dataset and **exports results to `/results/`**:
-```bash
-jupyter notebook notebooks/replication_main.ipynb
-```
+Fixed-length windowing:
 
-### 3) Streamlit app (optional)
-If provided in `src/`:
-```bash
-streamlit run src/app.py
-```
+Window duration: 2.0 s
 
----
+Overlap: 50%
 
-## Reproducibility
-- Random seeds are fixed where applicable.
-- Software versions are listed in `requirements.txt` (and optionally `environment.yml`).
-- The **replication_main.ipynb** notebook generates:
-  - `metrics_bootstrap.csv` (Accuracy, ROC AUC, PR AUC, Brier; mean and 95% CIs),
-  - `predictions_oof.csv` (out‑of‑fold predictions),
-  - ROC/PR and calibration figures.
+No subject-specific filtering, normalization, or tuning is performed.
 
----
+Feature Extraction and Aggregation
 
-## Data Availability
-- **Derived datasets** (feature tables and synthetic example) are shared openly for replication.
-- **Raw gait recordings** contain sensitive clinical information and are **not** publicly available; they may be obtained from the corresponding author upon reasonable request, subject to ethical approval.
-- If applicable, a DOI to **Mendeley Data** will be provided here: **[Mendeley DOI link]**.
+SIAM employs window-based feature extraction to prioritize robustness and reproducibility over fine-grained event detection.
 
-## Code Availability
-Source code is openly available here and archived for permanence:
-- GitHub repository: **https://github.com/usuario/SIAM**
-- Zenodo archived release (DOI): **[Zenodo DOI link]**  
-Licensed under **MIT** (see `LICENSE`).
+Extracted features include:
 
----
+Time-domain amplitude measures
 
-## Citation
-If you use SIAM, please cite:
-> Authors. *SIAM: An open‑source pipeline for inertial‑sensor gait analysis to support motor screening and fall‑risk estimation — methodological description with pilot evaluation.* Computer Methods and Programs in Biomedicine, [Year], [DOI].
+Variability descriptors
 
----
+Frequency-domain and spectral metrics
 
-## Acknowledgments
-This work was supported by **[Funding agency, grant number]**. We thank the clinical collaborators and participants for their contributions.
+Complexity and entropy-based measures
 
----
+Asymmetry indices
 
-## License
-Distributed under the **MIT License**. See `LICENSE` for details.
+Features are computed per axis and aggregated at the trial level using the median to reduce sensitivity to transient artifacts and outliers.
+
+This design avoids reliance on gait event detection, which is known to be unstable in pathological or heterogeneous populations.
+
+Machine Learning Models
+
+SIAM uses classical, well-characterized models suitable for small-sample biomedical studies:
+
+Logistic Regression
+
+Linear Support Vector Machines
+
+Random Forests
+
+Key constraints:
+
+Fixed hyperparameters defined a priori
+
+Feature scaling performed within each LOSO training fold
+
+Balanced class weighting
+
+Probabilistic outputs enabled for all models
+
+The objective is to evaluate architectural stability, not to maximize performance.
+
+Validation Strategy
+Leave-One-Subject-Out (LOSO)
+
+Each validation fold excludes all data from one participant, ensuring complete subject independence.
+
+In small-sample wearable studies, LOSO represents a deliberately adverse validation regime that amplifies inter-subject variability and uncertainty. Stability under LOSO is therefore interpreted as evidence of system-level robustness, not favorable dataset structure.
+
+Probabilistic Calibration
+
+SIAM explicitly evaluates the reliability of probabilistic predictions:
+
+Brier score
+
+Reliability (calibration) curves
+
+Post-hoc calibration using isotonic regression
+
+All calibration procedures are performed exclusively within training folds, and evaluation is conducted on held-out subjects only.
+
+This ensures that reported probabilities reflect genuine subject-independent generalization.
+
+Demographic Confounding Analysis
+
+Given well-established biomechanical sex differences in gait, SIAM includes explicit characterization of sex-related feature sensitivity:
+
+Feature-level effect sizes (Cohen’s d)
+
+Comparison across feature families
+
+Restricted sex-homogeneous robustness analyses
+
+Confounding is quantified and reported, not algorithmically corrected when cohort design precludes causal disentanglement.
+
+Statistical Perspective
+
+Analyses are descriptive and methodological in nature:
+
+Emphasis on effect sizes and uncertainty
+
+Bootstrap-based confidence intervals
+
+No null-hypothesis significance testing for clinical inference
+
+No multiple-comparison correction
+
+This approach is consistent with exploratory system-validation studies.
+
+Software Implementation
+
+Language: Python 3.10
+
+Libraries:
+
+NumPy
+
+SciPy
+
+scikit-learn
+
+Streamlit (visualization)
+
+Modular, hardware-agnostic design
+
+Fixed random seeds for reproducibility
+
+Version-controlled using Git
+
+Computational Performance
+
+End-to-end processing time is approximately 3 seconds per 60-second walking trial on standard workstation hardware. Runtime and memory usage remain stable across validation folds and subjects.
+
+These results indicate feasibility for research-scale deployment but do not imply clinical readiness.
+
+Limitations
+
+The framework is demonstrated using a small, demographically imbalanced pilot cohort and a single lumbar-mounted sensor under controlled conditions. These constraints are intentionally retained and explicitly documented to reflect common limitations in exploratory wearable research.
+
+SIAM does not attempt to overcome cohort limitations algorithmically; instead, it provides tools to expose and contextualize their impact on system behavior.
+
+Intended Use
+
+SIAM is intended for:
+
+Methodological research in inertial gait analysis
+
+Validation benchmarking under subject-independent conditions
+
+Studies of probabilistic calibration and uncertainty
+
+Reproducible biomedical systems engineering research
+
+It is not intended for clinical diagnosis or decision support.
+
+Citation
+
+If you use SIAM in academic work, please cite:
+
+Nieto Granados, I. E., Alarcón Paredes, A., & Alonso Silverio, G.
+SIAM: An Open-Source Architecture for Inertial Gait Analysis and Characterization in Alzheimer’s Disease.
+Manuscript under review.
+
+Closing Remark
+
+SIAM formalizes the view that validation strategy is a first-class component of biomedical systems, not a post hoc procedural detail. By embedding subject-independent evaluation, probabilistic reliability, and demographic transparency into a unified architecture, SIAM supports reproducible and trustworthy development of inertial gait-analysis systems.
