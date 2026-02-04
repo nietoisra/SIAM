@@ -1,4 +1,4 @@
-# SIAM: Open‑source Pipeline for Inertial‑Sensor Gait Analysis
+# SIAM: An Open-Source Architecture for Inertial Gait Analysis and Characterization in Alzheimer’s Disease
 
 ## Overview
 **SIAM (Sistema Integral de Análisis de Marcha)** is an open‑source pipeline for gait analysis using wearable inertial measurement units (IMUs). The framework implements signal preprocessing, feature extraction, and machine‑learning classification with a focus on **reproducibility** and **clinical applicability**.
