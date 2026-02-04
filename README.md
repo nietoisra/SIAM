@@ -1,9 +1,43 @@
+# SIAM  
+**System-Level Validation Architecture for Inertial Gait Analysis**
+
+SIAM is an **open-source, system-level validation framework** for inertial sensor–based gait analysis, designed to support **subject-independent evaluation**, **probabilistic reliability assessment**, **demographic confounding characterization**, and **reproducible benchmarking** in biomedical engineering research.
+
+This repository accompanies the manuscript:
+
+> **“SIAM: A system-level validation framework for subject-independent inertial gait analysis”**  
+> submitted to *Medical & Biological Engineering & Computing (MBEC)*.
+
+The contribution of SIAM is **architectural and methodological**.  
+It does **not** propose algorithmic novelty, clinical diagnostic tools, or disease-specific biomarkers.  
+Instead, SIAM provides a reusable validation architecture to characterize how established sensing and machine-learning components behave under **adverse yet deployment-relevant conditions**.
+
+---
+
+## Scope and Design Principles
+
+SIAM was developed with the following principles:
+
+- **System-level validation**, not task-specific optimization  
+- **Subject-independent evaluation** (leave-one-subject-out, LOSO)  
+- **Fixed and reproducible design choices**, avoiding data-driven tuning  
+- **Probabilistic reliability**, beyond accuracy-based metrics  
+- **Explicit demographic transparency**, not post-hoc correction  
+- **Open and inspectable implementation**, enabling independent replication
+
+All reported results in the accompanying manuscript should be interpreted as **descriptors of system behavior**, not as evidence of clinical discrimination or disease detection.
+
+---
+
+## Repository Structure
+
+
+
+***
 # SIAM: An Open-Source Architecture for Inertial Gait Analysis and Characterization in Alzheimer’s Disease
 
 ## Overview
-**SIAM (Sistema Integral de Análisis de Marcha)** is an open‑source pipeline for gait analysis using wearable inertial measurement units (IMUs). The framework implements signal preprocessing, feature extraction, and machine‑learning classification with a focus on **reproducibility** and **clinical applicability**.
-
-This repository accompanies the manuscript submitted to *Computer Methods and Programs in Biomedicine (CMPB)*, where SIAM is presented as a **methodological contribution with pilot evaluation**.
+**SIAM (System-level Inertial Gait Analysis Method)** is an open-source validation architecture for inertial sensor–based gait analysis designed to support subject-independent evaluation, probabilistic calibration, demographic confounding analysis, and reproducible benchmarking as described in the manuscript submitted to Medical & Biological Engineering & Computing (MBEC).
 
 ---
 
