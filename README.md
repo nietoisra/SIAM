@@ -58,11 +58,17 @@ SIAM is guided by five design principles aligned with best practices in biomedic
    No dataset-specific hyperparameter tuning or model selection using test data.
 
 ---
+## System Overview
 
-##
+SIAM is organized as a **fixed, end-to-end validation architecture** in which each stage is executed sequentially and evaluated under strict subject-independent conditions. The pipeline is intentionally designed to expose architectural fragility, uncertainty, and demographic sensitivity rather than to optimize task-specific performance.
+
+
 Inertial Data Acquisition
+
 └─ Standardized single-IMU recording (trunk-mounted)
+
 ↓
+
 Signal Preprocessing
 └─ Fixed band-pass filtering and windowing (no subject-specific tuning)
 ↓
@@ -83,6 +89,7 @@ Probabilistic Calibration Assessment
 ↓
 Demographic Confounding Characterization
 └─ Feature-level sensitivity analysis (e.g., biological sex)
+
 ---
 
 ## System Overview
