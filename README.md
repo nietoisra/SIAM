@@ -62,80 +62,18 @@ SIAM is guided by five design principles aligned with best practices in biomedic
 
 SIAM is organized as a **fixed, end-to-end validation architecture** in which each stage is executed sequentially and evaluated under strict subject-independent conditions. The pipeline is intentionally designed to expose architectural fragility, uncertainty, and demographic sensitivity rather than to optimize task-specific performance.
 
+flowchart TB
+    A[Standardized Inertial Data Acquisition<br/>(Single trunk-mounted IMU)]
+    B[Signal Preprocessing<br/>Fixed band-pass filtering and windowing]
+    C[Window-Based Feature Extraction<br/>Time-, frequency-, variability-, and complexity-based features]
+    D[Trial-Level Feature Aggregation<br/>Robust median aggregation]
+    E[Classical Machine-Learning Models<br/>Fixed hyperparameters]
+    F[Subject-Independent Validation<br/>Leave-One-Subject-Out (LOSO)]
+    G[Probabilistic Calibration Assessment<br/>Reliability curves and Brier score]
+    H[Demographic Confounding Characterization<br/>Feature-level sensitivity analysis]
 
-Inertial Data Acquisition
+    A --> B --> C --> D --> E --> F --> G --> H
 
-Standardized single-IMU, trunk-mounted
-
-▼
-┌────────────────────────────────────────────┐
-│ Signal Preprocessing │
-│ Fixed band-pass filtering and windowing │
-│ (no subject-specific tuning) │
-└────────────────────────────────────────────┘
-│
-▼
-┌────────────────────────────────────────────┐
-│ Window-Based Feature Extraction │
-│ Time-, frequency-, variability-, and │
-│ complexity-based descriptors │
-└────────────────────────────────────────────┘
-│
-▼
-┌────────────────────────────────────────────┐
-│ Trial-Level Feature Aggregation │
-│ Robust median aggregation across windows │
-└────────────────────────────────────────────┘
-│
-▼
-┌────────────────────────────────────────────┐
-│ Classical Machine Learning Models │
-│ Interpretable models, fixed hyperparameters│
-└────────────────────────────────────────────┘
-│
-▼
-┌────────────────────────────────────────────┐
-│ Leave-One-Subject-Out Validation (LOSO) │
-│ Subject-independent architectural stress │
-│ test under maximal inter-subject variability│
-└────────────────────────────────────────────┘
-│
-▼
-┌────────────────────────────────────────────┐
-│ Probabilistic Calibration Assessment │
-│ Reliability curves and Brier score on │
-│ held-out subjects │
-└────────────────────────────────────────────┘
-│
-▼
-┌────────────────────────────────────────────┐
-│ Demographic Confounding Characterization│
-│ Feature-level sensitivity analysis │
-│ (e.g., biological sex) │
-└────────────────────────────────────────────┘
-
----
-
-## System Overview
-
-Inertial Data Acquisition
-↓
-Signal Preprocessing
-↓
-Window-Based Feature Extraction
-↓
-Trial-Level Aggregation
-↓
-Classical Machine Learning Models
-↓
-Leave-One-Subject-Out Validation
-↓
-Probabilistic Calibration Assessment
-↓
-Demographic Confounding Characterization
-
-
-Each stage is modular, documented, and hardware-agnostic.
 
 ---
 
