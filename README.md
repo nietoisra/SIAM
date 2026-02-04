@@ -64,6 +64,9 @@ SIAM is organized as a **fixed, end-to-end validation architecture** in which ea
 
 ![Figure 1. System-level architecture of the SIAM framework.](figures/proceso.png)
 
+**Figure 1. System-level architecture of the SIAM framework.**  
+The pipeline integrates standardized inertial data acquisition, fixed signal preprocessing, window-based feature extraction, trial-level aggregation, classical machine-learning models, and strict subject-independent validation using leave-one-subject-out (LOSO). Probabilistic calibration and demographic confounding characterization are incorporated as explicit evaluation stages to assess reliability and robustness under adverse validation conditions.
+
 ---
 
 ## Data Acquisition
