@@ -63,7 +63,7 @@ SIAM is guided by five design principles aligned with best practices in biomedic
 SIAM is organized as a **fixed, end-to-end validation architecture** in which each stage is executed sequentially and evaluated under strict subject-independent conditions. The pipeline is intentionally designed to expose architectural fragility, uncertainty, and demographic sensitivity rather than to optimize task-specific performance.
 
 flowchart TB
-    A[Standardized Inertial Data Acquisition<br/>(Single trunk-mounted IMU)]
+    A[Standardized Inertial Data Acquisition<br/>(Single trunk-mounted IMU)] --> B[Signal Preprocessing<br/>Fixed band-pass filtering and windowing]
     B[Signal Preprocessing<br/>Fixed band-pass filtering and windowing]
     C[Window-Based Feature Extraction<br/>Time-, frequency-, variability-, and complexity-based features]
     D[Trial-Level Feature Aggregation<br/>Robust median aggregation]
