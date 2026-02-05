@@ -160,8 +160,8 @@ All preprocessing parameters, model configurations, and validation strategies ar
   author  = {Nieto, Israel Edgar and Alarcón Paredes, Antonio and Silverio, Gustavo Alonso},
   title   = {SIAM: An Open-Source Architecture for Inertial Gait Analysis and Characterization in Alzheimer’s Disease},
   journal = {Medical \& Biological Engineering \& Computing},
-  status  = {under review},
-  year    = {2025}
+  year    = {2025},
+  note    = {Manuscript under review}
 }
 
 ## Disclaimer
