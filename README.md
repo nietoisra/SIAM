@@ -1,5 +1,5 @@
 # SIAM 🚶‍♂️  
-**System-Level Validation Architecture for Inertial Gait Analysis**
+**System-Level Validation Architecture for Inertial Gait Analysis in Biomedical Systems Engineering**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Research](https://img.shields.io/badge/Type-Methodological%20Framework-purple)](#intended-use)
@@ -8,7 +8,7 @@
 
 ## Conceptual Overview
 
-**SIAM (System-Level Inertial Analysis of Motion)** is an open-source, modular, and reproducible **validation architecture** for inertial-sensor-based gait analysis systems.
+**SIAM** is an open-source, modular, and reproducible validation architecture for inertial-sensor-based gait analysis systems within biomedical systems engineering.
 
 SIAM is **not designed to optimize diagnostic accuracy** nor to propose novel machine-learning algorithms.  
 Instead, it is explicitly designed to evaluate **how a complete gait-analysis pipeline behaves** under:
