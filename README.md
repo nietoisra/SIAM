@@ -56,21 +56,16 @@ SIAM is a **methodological framework**, not a clinical system.
 
 SIAM is built around the following principles:
 
-1. **Subject Independence**  
+1. **Subject Independence**
    No data from a test subject is used during training or calibration.
-
-2. **Validation as Stress Testing**  
+2. **Validation as Stress Testing**
    LOSO is used to amplify inter-subject variability and expose architectural fragility.
-
 3. **Probabilistic Reliability**
    System-level predictive confidence is evaluated through calibration metrics rather than assumed from discrimination performance.
-
-4. **Demographic Transparency**  
+4. **Demographic Transparency**
    Potential confounders (e.g., biological sex) are explicitly quantified and reported.
-
-5. **Reproducibility by Design**  
+5. **Reproducibility by Design**
    Fixed preprocessing, deterministic pipelines, and version-controlled code.
-
 ---
 
 ## System-Level Pipeline
