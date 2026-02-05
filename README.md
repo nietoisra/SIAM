@@ -154,6 +154,7 @@ pip install -r requirements.txt
 Reproducibility Note
 All preprocessing parameters, model configurations, and validation strategies are fixed a priori and documented to ensure reproducible system-level evaluation.
 
+---
 
 ## Citation
 If you use SIAM as a reference validation framework, please cite:
@@ -167,6 +168,7 @@ If you use SIAM as a reference validation framework, please cite:
   note    = {Manuscript under review}
 }
 ```
+---
 
 ## Research Artifacts and Provenance
 
@@ -178,6 +180,7 @@ This repository contains research artifacts supporting system-level methodologic
 
 All artifacts are provided to support transparency and reproducibility rather than to report optimized performance.
 
+---
 
 ## Disclaimer
 This software is provided strictly for research and educational purposes.
