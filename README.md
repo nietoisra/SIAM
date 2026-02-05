@@ -79,7 +79,7 @@ SIAM integrates the following stages into a single validation architecture:
 1. Standardized inertial data acquisition  
 2. Fixed and reproducible signal preprocessing  
 3. Window-based feature extraction and aggregation  
-4. Classical machine-learning models (baseline behavior)  
+4. Classical machine-learning models used to characterize system-level behavior  
 5. Subject-independent validation (LOSO)  
 6. Probabilistic calibration assessment  
 7. Demographic confounding analysis  
@@ -167,6 +167,17 @@ If you use SIAM as a reference validation framework, please cite:
   note    = {Manuscript under review}
 }
 ```
+
+## Research Artifacts and Provenance
+
+This repository contains research artifacts supporting system-level methodological validation:
+
+- `notebooks/`: exploratory and validation analyses used to characterize architectural behavior  
+- `figures/`: figures corresponding to system-level evaluation and calibration analysis  
+- `results/`: out-of-fold predictions and derived metrics under subject-independent validation  
+
+All artifacts are provided to support transparency and reproducibility rather than to report optimized performance.
+
 
 ## Disclaimer
 This software is provided strictly for research and educational purposes.
