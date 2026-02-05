@@ -1,211 +1,147 @@
 # SIAM 🚶‍♂️  
-**System-Level Validation Framework for Inertial Gait Analysis**
+**System-Level Validation Architecture for Inertial Gait Analysis**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
-[![Research](https://img.shields.io/badge/Type-Research%20Software-purple)](#intended-use)
+[![Research](https://img.shields.io/badge/Type-Methodological%20Framework-purple)](#intended-use)
 
 ---
 
-## Overview
+## Conceptual Overview
 
-**SIAM** (System-Level Inertial Analysis of Motion) is an **open-source, modular, and reproducible research framework** designed for the **methodological validation of inertial gait analysis pipelines** using wearable IMU sensors and machine learning models.
+**SIAM (System-Level Inertial Analysis of Motion)** is an open-source, modular, and reproducible **validation architecture** for inertial-sensor-based gait analysis systems.
 
-The framework focuses on **system-level validation**, addressing common pitfalls in gait analysis research such as subject leakage, improper cross-validation, demographic confounding, and over-optimistic performance reporting.
+SIAM is **not designed to optimize diagnostic accuracy** nor to propose novel machine-learning algorithms.  
+Instead, it is explicitly designed to evaluate **how a complete gait-analysis pipeline behaves** under:
 
-> ⚠️ **SIAM is not a clinical diagnostic tool.**  
-> It is intended exclusively for **methodological research, benchmarking, and exploratory studies**.
+- strict subject-independent validation  
+- demographic imbalance  
+- small-sample uncertainty  
+- deployment-relevant conditions  
 
----
-
-## Rationale
-
-Inertial gait analysis studies often suffer from:
-- Subject-dependent data leakage
-- Insufficient validation strategies
-- Lack of probabilistic calibration
-- Ignoring demographic confounding variables
-- Overinterpretation of small cohorts
-
-SIAM was developed to provide a **controlled, transparent, and statistically grounded framework** that enables:
-- Reproducible experimentation
-- Fair comparison between models
-- Explicit acknowledgment of uncertainty and limitations
+> SIAM treats validation as an **architectural property**, not as a post-hoc performance estimate.
 
 ---
 
-## Scope and Intended Contribution
+## Methodological Rationale
 
-SIAM is designed to:
-- Validate **complete analysis pipelines**, not isolated models
-- Support **exploratory and early-stage research**
-- Encourage **best practices in validation and reporting**
+In inertial gait analysis research, performance metrics are frequently reported under subject-dependent or mixed validation schemes, leading to optimistic and non-deployable estimates.
 
-Out of scope:
-- Clinical diagnosis or decision-making
-- Large-scale epidemiological inference
-- Real-time embedded inference
+SIAM addresses this by:
+- enforcing **Leave-One-Subject-Out (LOSO)** evaluation
+- treating LOSO as a **deliberate architectural stress test**
+- characterizing **uncertainty and variability**, not just mean performance
+- explicitly analyzing **demographic confounding**, rather than ignoring it
 
 ---
 
-## Architectural Principles
+## Scope and Epistemological Position
 
-SIAM follows five core principles:
+### In Scope
+- System-level validation of gait-analysis pipelines  
+- Reproducible evaluation of preprocessing, feature extraction, and modeling interactions  
+- Probabilistic calibration assessment  
+- Demographic confounding characterization  
 
-1. **Subject Independence** – strict separation between training and testing subjects  
-2. **Reproducibility** – deterministic pipelines and explicit configuration  
-3. **Transparency** – interpretable features and models  
-4. **Statistical Prudence** – emphasis on uncertainty and effect sizes  
-5. **Modularity** – interchangeable components across the pipeline  
+### Out of Scope
+- Clinical diagnosis  
+- Biomarker discovery  
+- Performance optimization  
+- Medical decision support  
 
----
-
-## System Overview
-
-The framework is organized into modular stages:
-
-1. Data acquisition  
-2. Signal preprocessing  
-3. Feature extraction and aggregation  
-4. Machine learning modeling  
-5. Validation and calibration  
-6. Statistical and demographic analysis  
-7. Visualization and reporting  
+SIAM is a **methodological framework**, not a clinical system.
 
 ---
 
-## Data Acquisition
+## Architectural Design Principles
 
-- Wearable IMU sensors
-- Triaxial acceleration and angular velocity
-- Fixed sampling frequency
-- Structured acquisition protocols under controlled conditions
+SIAM is built around the following principles:
 
-Data are organized per subject to enforce **subject-level validation**.
+1. **Subject Independence**  
+   No data from a test subject is used during training or calibration.
 
----
+2. **Validation as Stress Testing**  
+   LOSO is used to amplify inter-subject variability and expose architectural fragility.
 
-## Signal Preprocessing
+3. **Probabilistic Reliability**  
+   Model confidence is evaluated through calibration metrics, not assumed.
 
-Typical preprocessing steps include:
-- Noise filtering
-- Segmentation and windowing
-- Signal normalization
+4. **Demographic Transparency**  
+   Potential confounders (e.g., biological sex) are explicitly quantified and reported.
 
-All preprocessing steps are configurable and reproducible.
-
----
-
-## Feature Extraction and Aggregation
-
-SIAM extracts interpretable gait features from:
-- Time domain
-- Frequency domain
-- Statistical descriptors
-
-Features are aggregated at the **subject level**, avoiding trial-level leakage.
+5. **Reproducibility by Design**  
+   Fixed preprocessing, deterministic pipelines, and version-controlled code.
 
 ---
 
-## Machine Learning Models
+## System-Level Pipeline
 
-Baseline and classical models are supported, including:
-- Logistic Regression
-- Support Vector Machines (SVM)
-- k-Nearest Neighbors
-- Tree-based classifiers
+SIAM integrates the following stages into a single validation architecture:
 
-The framework emphasizes **model comparison under identical conditions** rather than model complexity.
+1. Standardized inertial data acquisition  
+2. Fixed and reproducible signal preprocessing  
+3. Window-based feature extraction and aggregation  
+4. Classical machine-learning models (baseline behavior)  
+5. Subject-independent validation (LOSO)  
+6. Probabilistic calibration assessment  
+7. Demographic confounding analysis  
+8. Visualization and reporting  
+
+Each component is evaluated **as part of the system**, not in isolation.
 
 ---
 
 ## Validation Strategy
 
-SIAM employs **Leave-One-Subject-Out (LOSO)** cross-validation to ensure:
-- True subject independence
-- Realistic generalization estimates
+SIAM employs **Leave-One-Subject-Out (LOSO)** cross-validation.
 
-Performance metrics are reported as **distributions**, not single-point estimates.
+In small-sample wearable studies, LOSO constitutes an **adverse validation regime** that:
+- maximizes inter-subject heterogeneity
+- amplifies uncertainty
+- exposes overfitting and leakage
+- reflects deployment-like conditions
+
+Observed stability under LOSO is treated as a **methodological result**.
 
 ---
 
 ## Probabilistic Calibration
 
-Beyond accuracy-based metrics, SIAM evaluates:
-- Prediction confidence
-- Calibration curves
-- Reliability of probabilistic outputs
+Beyond discrimination metrics, SIAM evaluates:
+- Brier score
+- reliability curves
+- calibration stability across folds
 
-This enables analysis of **model trustworthiness**, not just correctness.
-
----
-
-## Demographic Confounding Analysis
-
-The framework explicitly analyzes potential confounders such as:
-- Sex
-- Age (when available)
-
-Performance stratification is used to identify systematic biases.
+This allows assessment of **predictive trustworthiness**, not just correctness.
 
 ---
 
-## Statistical Perspective
+## Demographic Confounding
 
-SIAM adopts a **descriptive and exploratory statistical stance**, prioritizing:
-- Effect sizes
-- Variability
-- Uncertainty awareness
+SIAM explicitly characterizes demographic sensitivity at the feature level.
 
-Hypothesis testing is secondary to **robust methodological insight**.
+Rather than attempting to algorithmically “correct” confounding in underpowered cohorts, SIAM:
+- quantifies demographic sensitivity
+- reports its potential impact
+- contextualizes observed system behavior
 
----
-
-## Software Implementation
-
-- **Language:** Python  
-- **Core libraries:** NumPy, SciPy, scikit-learn  
-- **Visualization & UI:** Streamlit  
-
-The framework is designed for **readability and extensibility**, not black-box optimization.
-
----
-
-## Computational Performance
-
-- Designed for offline analysis
-- Suitable for small-to-medium cohorts
-- Emphasis on methodological correctness over runtime optimization
-
----
-
-## Limitations
-
-Known limitations include:
-- Small cohort sizes
-- Single-sensor configurations
-- Controlled acquisition environments
-
-These limitations are **explicitly acknowledged and reported**, not hidden.
+This design choice prioritizes **transparency over false adjustment**.
 
 ---
 
 ## Intended Use
 
 SIAM is intended for:
-- Academic research
-- Methodological benchmarking
-- Reproducibility studies
-- Doctoral and master’s theses
+- methodological research
+- validation benchmarking
+- reproducibility studies
+- doctoral and master’s research
+- biomedical systems engineering
 
-**Not intended for:**
-- Clinical diagnosis
-- Medical decision support
-- Commercial healthcare products
+It is **not intended for clinical deployment or diagnostic use**.
 
 ---
 
-## Installation
+## Installation (Research Use)
 
 ```bash
 git clone https://github.com/nietoisra/SIAM.git
