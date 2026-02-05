@@ -110,7 +110,7 @@ Beyond discrimination metrics, SIAM evaluates:
 - reliability curves
 - calibration stability across folds
 
-This allows assessment of **predictive trustworthiness**, not just correctness.
+This allows assessment of predictive reliability beyond discrimination metrics.
 
 ---
 
@@ -140,7 +140,7 @@ It is **not intended for clinical deployment or diagnostic use**.
 
 ---
 
-## Installation (Research Use)
+## Installation (for Reproducibility)
 
 ```bash
 git clone https://github.com/nietoisra/SIAM.git
@@ -156,7 +156,7 @@ All preprocessing parameters, model configurations, and validation strategies ar
 
 
 ## Citation
-If you use this framework in academic work, please cite:
+If you use SIAM as a reference validation framework, please cite:
 
 ```bibtex
 @article{Nieto2025SIAM,
