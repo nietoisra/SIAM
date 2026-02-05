@@ -62,8 +62,8 @@ SIAM is built around the following principles:
 2. **Validation as Stress Testing**  
    LOSO is used to amplify inter-subject variability and expose architectural fragility.
 
-3. **Probabilistic Reliability**  
-   Model confidence is evaluated through calibration metrics, not assumed.
+3. **Probabilistic Reliability**
+   System-level predictive confidence is evaluated through calibration metrics rather than assumed from discrimination performance.
 
 4. **Demographic Transparency**  
    Potential confounders (e.g., biological sex) are explicitly quantified and reported.
