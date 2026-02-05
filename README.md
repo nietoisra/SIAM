@@ -152,10 +152,14 @@ venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 ```
 
-
 Reproducibility Note
 All preprocessing parameters, model configurations, and validation strategies are fixed a priori and documented to ensure reproducible system-level evaluation.
 
+
+## Citation
+If you use this framework in academic work, please cite:
+
+```bibtex
 @article{Nieto2025SIAM,
   author  = {Nieto, Israel Edgar and Alarcón Paredes, Antonio and Silverio, Gustavo Alonso},
   title   = {SIAM: An Open-Source Architecture for Inertial Gait Analysis and Characterization in Alzheimer’s Disease},
@@ -163,6 +167,7 @@ All preprocessing parameters, model configurations, and validation strategies ar
   year    = {2025},
   note    = {Manuscript under review}
 }
+```
 
 ## Disclaimer
 This software is provided strictly for research and educational purposes.
