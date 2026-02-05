@@ -150,3 +150,18 @@ python -m venv venv
 source venv/bin/activate   # Linux/Mac
 venv\Scripts\activate      # Windows
 pip install -r requirements.txt
+
+Reproducibility Note
+All preprocessing parameters, model configurations, and validation strategies are fixed a priori and documented to ensure reproducible system-level evaluation.
+
+@article{Nieto2025SIAM,
+  author  = {Nieto, Israel Edgar and Alarcón Paredes, Antonio and Silverio, Gustavo Alonso},
+  title   = {SIAM: An Open-Source Architecture for Inertial Gait Analysis and Characterization in Alzheimer’s Disease},
+  journal = {Medical \& Biological Engineering \& Computing},
+  status  = {under review},
+  year    = {2025}
+}
+
+## Disclaimer
+This software is provided strictly for research and educational purposes.
+No clinical claims are made or implied.
