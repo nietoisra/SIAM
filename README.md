@@ -150,6 +150,7 @@ python -m venv venv
 source venv/bin/activate   # Linux/Mac
 venv\Scripts\activate      # Windows
 pip install -r requirements.txt
+---
 
 Reproducibility Note
 All preprocessing parameters, model configurations, and validation strategies are fixed a priori and documented to ensure reproducible system-level evaluation.
